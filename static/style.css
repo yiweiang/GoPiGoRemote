@@ -1,0 +1,36 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.controlText{
+	position:relative; 
+	top:35px;
+}
+
+.controlButton{
+	background-color:#e2e2e2;
+	width:100px;
+	height:100px;
+	text-align:center;
+	font-weight:600;
+	float:left;
+	font-size:25px;
+}
+
+
+.controlButton:hover{
+	background-color:#f2f2f2;
+}
+
+.buttonRow{
+	height:100px;
+	min-width:600px;
+}
+
+
+
