@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from gopigo import *
+import picamera
 import time
 import datetime
 app = Flask(__name__)
@@ -20,16 +21,18 @@ def up(command):
   return 'Done'
   
 @app.route('/camera/<command>')
-def up(command):
+def camera(command):
   if command == 'snapshot':
     with picamera.PiCamera() as camera:
-    camera.resolution = (1024, 768)
-    camera.start_preview()
-    # Camera warm-up time
-    time.sleep(1)
-    ts = time.time()
-    file =  datetime.datetime.fromtimestamp(ts).strftime('%Y%m%d%H%M%S')
-    camera.capture(file+'.jpg')
+      camera.resolution = (1024, 768)
+      camera.start_preview()
+      # Camera warm-up time
+      time.sleep(1)
+      ts = time.time()
+      file =  datetime.datetime.fromtimestamp(ts).strftime('%Y%m%d%H%M%S')
+      camera.capture('images/'+file+'.jpg')
+
+  return 'Done'
 
 @app.route('/')
 def index():
