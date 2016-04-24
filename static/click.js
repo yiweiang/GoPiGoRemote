@@ -16,8 +16,12 @@ $(function() {
     callURL("http://"+window.location.host+"/control/right");
   });
 
-  $(".controlButton.snap").click(function() {
+  $(".controlButton.stop").click(function() {
     callURL("http://"+window.location.host+"/control/stop");
+  });
+  
+  $(".controlButton.snap").click(function() {
+    callURL("http://"+window.location.host+"/camera/snapshot");
   });
 
   $('body').on('keydown', function(e) {
