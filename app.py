@@ -7,11 +7,11 @@ app = Flask(__name__)
 @app.route('/control/<command>')
 def up(command):
   if command == 'up':
-    fwd()
+    bwd()
   elif command == 'stop':
     stop()
   elif command == 'down':
-    bwd()
+    fwd()
   elif command == 'left':
     left()
   elif command == 'right':
