@@ -1,9 +1,15 @@
 from flask import Flask, render_template
 from gopigo import *
+import os
 import picamera
 import time
 import datetime
+import dropbox
+import env
+
 app = Flask(__name__)
+
+client = dropbox.client.DropboxClient(env.DROPBOX_TOKEN)
 
 @app.route('/control/<command>')
 def up(command):
@@ -13,9 +19,9 @@ def up(command):
     stop()
   elif command == 'down':
     fwd()
-  elif command == 'left':
-    left()
   elif command == 'right':
+    left()
+  elif command == 'left':
     right()  
  
   return 'Done'
@@ -31,6 +37,12 @@ def camera(command):
       ts = time.time()
       file =  datetime.datetime.fromtimestamp(ts).strftime('%Y%m%d%H%M%S')
       camera.capture('images/'+file+'.jpg')
+
+      f = open('images/'+file+'.jpg', 'rb')
+      response = client.put_file(file+'.jpg', f)
+      print 'uploaded: ', response
+      
+      os.remove('images/'+file+'.jpg')
 
   return 'Done'
 
